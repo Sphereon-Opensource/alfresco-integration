@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  ~ Copyright (c) 2018 Sphereon B.V. <https://sphereon.com>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+<!--    <context:component-scan base-package="com.sphereon"/>
+    <task:annotation-driven />-->
+    <bean id="conversionConfiguration"
+          class="com.sphereon.alfresco.vision.VisionConfiguration" parent="abstractAuthConfig" scope="prototype">
+        <property name="accessToken" value="${sphereon.conversion2pdf.api.auth.fixed-access-token}"/>
+        <property name="consumerKey" value="${sphereon.conversion2pdf.api.auth.oauth2-consumer-key}"/>
+        <property name="consumerSecret" value="${sphereon.conversion2pdf.api.auth.oauth2-consumer-secret}"/>
+        <property name="authMethod" value="${sphereon.conversion2pdf.api.auth.method}"/>
+        <property name="tempDir" value="${sphereon.conversion2pdf.temp-dir}"/>
+        <property name="enabled" value="${sphereon.conversion2pdf.enabled}"/>
+        <property name="containerConversion"
+                  value="${content.transformer.sphereon.conversion2pdf.container-conversion}"/>
+        <property name="conversionEngine" value="${content.transformer.sphereon.conversion2pdf.conversion-engine}"/>
+        <property name="ocrMode" value="${content.transformer.sphereon.conversion2pdf.ocr-mode}"/>
+        <!--<property name="outputFileFormats"
+                  value="#{T(java.util.Arrays).asList('${content.transformer.sphereon.conversion2pdf.output-file-formats}')}"/>-->
+        <property name="pdfVersion" value="${content.transformer.sphereon.conversion2pdf.pdf-version}"/>
+        <property name="actionEnabled" value="${content.transformer.sphereon.conversion2pdf.action-enabled}"/>
+        <property name="registerBlockchain" value="${content.transformer.sphereon.conversion2pdf.action-register-blockchain}"/>
+    </bean>
+
+    <bean id="wf-conversion" class="com.sphereon.alfresco.vision.workflow.SphereonWorkflowVision" parent="wf-action" scope="prototype"/>
+
+
+    <bean id="conversion2PdfTransformer"
+          class="com.sphereon.alfresco.vision.transformations.VisionTransformer"
+          parent="baseContentTransformer" scope="prototype">
+        <property name="delegate">
+            <ref bean="conversionDelegate"/>
+        </property>
+
+    </bean>
+
+    <bean id="conversion-action"
+          class="com.sphereon.alfresco.vision.actions.VisionActionExecuter"
+          parent="abstractActionExecuter" scope="prototype">
+        <property name="delegate">
+            <ref bean="conversionDelegate"/>
+        </property>
+        <property name="registerFileAction">
+            <ref bean="blockchain-proof-register-file"/>
+        </property>
+        <property name="mimetypeService">
+            <ref bean="mimetypeService"/>
+        </property>
+    </bean>
+
+
+    <bean id="conversionDelegate" class="com.sphereon.alfresco.vision.VisionDelegate" scope="prototype">
+        <property name="config">
+            <ref bean="conversionConfiguration"/>
+        </property>
+        <property name="mimetypeService">
+            <ref bean="mimetypeService"/>
+        </property>
+        <property name="transformerConfig">
+            <ref bean="transformerConfig"/>
+        </property>
+        <property name="fileFolderService">
+            <ref bean="fileFolderService"/>
+        </property>
+    </bean>
+
+
+</beans>

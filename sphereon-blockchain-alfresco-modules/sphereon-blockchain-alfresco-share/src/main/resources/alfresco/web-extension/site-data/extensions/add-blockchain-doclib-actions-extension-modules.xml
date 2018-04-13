@@ -1,0 +1,165 @@
+<!--
+  ~ Copyright (c) 2018 Sphereon B.V. <https://sphereon.com>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<extension>
+  <modules>
+    <module>
+      <id>Add Blockchain Document Libarary Actions</id>
+      <version>0.1.0</version>
+      <auto-deploy>true</auto-deploy>
+      <configurations>
+      <!--  <config evaluator="string-compare" condition="DocumentLibrary">
+          <indicators>
+            &lt;!&ndash; Indicator that will be displayed if a node has the cm:emailed aspect applied &ndash;&gt;
+            <indicator id="com.sphereon.alfresco.share.indicator.isEmailed"
+                       icon="blockchain-verify-16.png"
+                       index="100"
+                       label="com.sphereon.alfresco.share.indicator.isEmailed.label">
+              <evaluator>alfresco.tutorials.evaluator.isEmailed</evaluator>
+            </indicator>
+          </indicators>
+        </config>
+-->
+        <config evaluator="string-compare" condition="DocLibActions">
+          <actions>
+            <!-- Add a Document Library action of the type javascript,
+                 meaning it will execute client side JavaScript code.
+                 In this case the action will call an Out-of-the-box
+                 action JavaScript function called onActionFormDialog, which
+                 will assume you want to display a form collecting some
+                 data that should then be passed on to a repo action
+                 invokation. -->
+            <action id="com.sphereon.alfresco.actions.blockchain.registerFileAction"
+                    icon="blockchain-register"
+                    type="javascript"
+                    label="com.sphereon.alfresco.actions.blockchain.registerFileAction.label">
+              <param name="function">onActionFormDialog</param>
+              <param name="itemKind">action</param>
+              <param name="itemId">blockchain-proof-register-file</param> <!-- Repository action id = Spring Bean id -->
+              <param name="mode">create</param>
+              <param name="destination">{node.nodeRef}</param>
+              <param name="successMessage">com.sphereon.alfresco.actions.blockchain.registerFileAction.msg.success</param>
+              <param name="failureMessage">com.sphereon.alfresco.actions.blockchain.registerFileAction.msg.failure</param>
+              <!--<evaluator negate="true">alfresco.tutorials.evaluator.isEmailed</evaluator>-->
+            </action>
+            <action id="com.sphereon.alfresco.actions.blockchain.verifyFileAction"
+                    icon="blockchain-verify"
+                    type="javascript"
+                    label="com.sphereon.alfresco.actions.blockchain.verifyFileAction.label">
+              <!--function is the name of the js function in the file under META-INF/respources/modules-->
+              <param name="function">onActionBlockchainProofVerifyRegistration</param>
+              <param name="itemKind">action</param>
+              <param name="itemId">blockchain-proof-verify-file</param> <!-- Repository action id = Spring Bean id -->
+              <param name="mode">create</param>
+              <param name="destination">{node.nodeRef}</param>
+              <param name="successMessage">com.sphereon.alfresco.actions.blockchain.verifyFileAction.msg.success</param>
+              <param name="failureMessage">com.sphereon.alfresco.actions.blockchain.verifyFileAction.msg.failure</param>
+              <evaluator negate="true">blockchain-proof-file-registered-evaluator</evaluator>
+            </action>
+          </actions>
+
+          <actionGroups>
+            <!-- We want the doclib actions to be visible in the
+                 document-browse and document-details views. -->
+            <actionGroup id="document-browse">
+              <action index="901" id="com.sphereon.alfresco.actions.blockchain.registerFileAction" />
+              <action index="902" id="com.sphereon.alfresco.actions.blockchain.verifyFileAction" />
+            </actionGroup>
+            <actionGroup id="document-details">
+              <action index="901" id="com.sphereon.alfresco.actions.blockchain.registerFileAction" />
+              <action index="902" id="com.sphereon.alfresco.actions.blockchain.verifyFileAction" />
+            </actionGroup>
+
+<!--
+            &lt;!&ndash; The Go To Google action will be visible also in Folder browse view &ndash;&gt;
+            <actionGroup id="folder-browse">
+              <action index="903" id="alfresco.tutorials.doclib.action.goToGoogle" />
+            </actionGroup>
+-->
+          </actionGroups>
+        </config>
+
+
+        <config evaluator="string-compare"
+                condition="blockchain-proof-register-file"> <!-- ID for the Repository Action that this form is associated with -->
+          <forms>
+            <form>
+              <field-visibility>
+                <show id="blockchain-file-remark" force="true"/>
+                <hide id="blockchain-api-access-token" force="true"/>
+                <hide id="blockchain-context" force="true"/>
+                <hide id="blockchain-hash-method"/>
+              </field-visibility>
+              <appearance>
+
+                <field id="blockchain-file-remark" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.file-remark">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
+                </field>
+                <field id="blockchain-api-access-token" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.api-access-token"/>
+                <field id="blockchain-context" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-context"/>
+                <field id="blockchain-hash-method" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-hash-method">
+                  <control template="/org/alfresco/components/form/controls/selectone.ftl">
+                    <control-param name="options">SHA-256|SHA-256,SHA-512|SHA-512</control-param>
+                  </control>
+                </field>
+              </appearance>
+            </form>
+          </forms>
+        </config>
+
+        <config evaluator="string-compare"
+                condition="blockchain-proof-verify-file">
+<!--          <dependencies>
+            <js src="resources/add-action-doclib-share/components/documentlibrary/custom-doclib-actions.js" />
+          </dependencies>-->
+          <forms>
+            <form>
+              <field-visibility>
+<!--
+                <hide id="blockchain-api-access-token" force="true"/>
+                <hide id="blockchain-context" force="true"/>
+                <hide id="blockchain-hash-method"/>
+-->
+              </field-visibility>
+              <appearance>
+
+<!--
+                <field id="blockchain-api-access-token" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.api-access-token"/>
+                <field id="blockchain-context" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-context"/>
+                <field id="blockchain-hash-method" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-hash-method">
+                  <control template="/org/alfresco/components/form/controls/selectone.ftl">
+                    <control-param name="options">SHA-256|SHA-256,SHA-512|SHA-512</control-param>
+                  </control>
+                </field>
+-->
+              </appearance>
+            </form>
+          </forms>
+        </config>
+<!--
+
+        &lt;!&ndash; Bring in custom JavaScript functions called by the callWebScript and showCustomMessage
+             DocLib actions defined above &ndash;&gt;
+        <config evaluator="string-compare" condition="DocLibCustom">
+          <dependencies>
+            <js src="resources/add-action-doclib-share/components/documentlibrary/custom-doclib-actions.js" />
+          </dependencies>
+        </config>
+-->
+      </configurations>
+    </module>
+  </modules>
+</extension>

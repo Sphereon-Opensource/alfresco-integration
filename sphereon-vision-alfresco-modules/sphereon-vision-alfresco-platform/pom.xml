@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2018 Sphereon B.V. <https://sphereon.com>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>sphereon-vision-alfresco-platform</artifactId>
+    <name>Sphereon - Vision - Alfresco Platform/Repository Module</name>
+    <description>Sphereon - Vision - Alfresco Platform/Repository Module</description>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.sphereon.alfresco</groupId>
+        <artifactId>sphereon-vision-alfresco-modules</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <properties>
+        <!--<spring.version>4.3.7.RELEASE</spring.version>-->
+        <vision-sdk.version>0.1.0-SNAPSHOT</vision-sdk.version>
+     <!--   <easy-blockchain-lib.version>0.1.1-SNAPSHOT</easy-blockchain-lib.version>
+        <authentication-lib.version>0.1.1-SNAPSHOT</authentication-lib.version>-->
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.sphereon.sdk</groupId>
+            <artifactId>vision-sdk-java8</artifactId>
+            <version>${vision-sdk.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.squareup.okio</groupId>
+                    <artifactId>okio</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>sphereon-base-alfresco-platform</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>sphereon-blockchain-alfresco-platform</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--
+                <dependency>
+                    <groupId>com.sphereon.public</groupId>
+                    <artifactId>easy-blockchain-lib-main</artifactId>
+                    <version>${easy-blockchain-lib.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.sphereon.public</groupId>
+                    <artifactId>authentication-lib-main</artifactId>
+                    <version>${authentication-lib.version}</version>
+                </dependency>
+        -->
+<!--
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

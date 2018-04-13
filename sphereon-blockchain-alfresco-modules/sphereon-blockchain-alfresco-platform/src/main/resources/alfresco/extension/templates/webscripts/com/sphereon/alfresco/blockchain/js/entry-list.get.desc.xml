@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Blockchain entries</shortname>
+    <description>Show blockchain entries for a node</description>
+    <family>Sphereon Blockchain</family>
+    <url>/sphereon/blockchain/entry-list?nodeRef={nodeRef}</url>
+    <authentication>user</authentication>
+    <format default="html"></format>
+</webscript>

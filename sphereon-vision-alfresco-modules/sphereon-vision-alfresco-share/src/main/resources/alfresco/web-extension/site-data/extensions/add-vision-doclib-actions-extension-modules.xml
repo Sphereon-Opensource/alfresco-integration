@@ -1,0 +1,243 @@
+<!--
+  ~ Copyright (c) 2018 Sphereon B.V. <https://sphereon.com>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<extension>
+  <modules>
+    <module>
+      <id>Add Conversion Document Libarary Actions</id>
+      <version>0.1.0</version>
+      <auto-deploy>true</auto-deploy>
+      <configurations>
+      <!--  <config evaluator="string-compare" condition="DocumentLibrary">
+          <indicators>
+            &lt;!&ndash; Indicator that will be displayed if a node has the cm:emailed aspect applied &ndash;&gt;
+            <indicator id="com.sphereon.alfresco.share.indicator.isEmailed"
+                       icon="blockchain-verify-16.png"
+                       index="100"
+                       label="com.sphereon.alfresco.share.indicator.isEmailed.label">
+              <evaluator>alfresco.tutorials.evaluator.isEmailed</evaluator>
+            </indicator>
+          </indicators>
+        </config>
+-->
+        <config evaluator="string-compare" condition="DocLibActions">
+          <actions>
+            <!-- Add a Document Library action of the type javascript,
+                 meaning it will execute client side JavaScript code.
+                 In this case the action will call an Out-of-the-box
+                 action JavaScript function called onActionFormDialog, which
+                 will assume you want to display a form collecting some
+                 data that should then be passed on to a repo action
+                 invokation. -->
+    <!--        <action id="com.sphereon.alfresco.actions.blockchain.registerFileAction"
+                    icon="blockchain-register"
+                    type="javascript"
+                    label="com.sphereon.alfresco.actions.blockchain.registerFileAction.label">
+              <param name="function">onActionFormDialog</param>
+              <param name="itemKind">action</param>
+              <param name="itemId">blockchain-proof-register-file</param> &lt;!&ndash; Repository action id = Spring Bean id &ndash;&gt;
+              <param name="mode">create</param>
+              <param name="destination">{node.nodeRef}</param>
+              <param name="successMessage">com.sphereon.alfresco.actions.blockchain.registerFileAction.msg.success</param>
+              <param name="failureMessage">com.sphereon.alfresco.actions.blockchain.registerFileAction.msg.failure</param>
+              &lt;!&ndash;<evaluator negate="true">alfresco.tutorials.evaluator.isEmailed</evaluator>&ndash;&gt;
+            </action>
+            <action id="com.sphereon.alfresco.actions.blockchain.verifyFileAction"
+                    icon="blockchain-verify"
+                    type="javascript"
+                    label="com.sphereon.alfresco.actions.blockchain.verifyFileAction.label">
+              &lt;!&ndash;function is the name of the js function in the file under META-INF/respources/modules&ndash;&gt;
+              <param name="function">onActionBlockchainProofVerifyRegistration</param>
+              <param name="itemKind">action</param>
+              <param name="itemId">blockchain-proof-verify-file</param> &lt;!&ndash; Repository action id = Spring Bean id &ndash;&gt;
+              <param name="mode">create</param>
+              <param name="destination">{node.nodeRef}</param>
+              <param name="successMessage">com.sphereon.alfresco.actions.blockchain.verifyFileAction.msg.success</param>
+              <param name="failureMessage">com.sphereon.alfresco.actions.blockchain.verifyFileAction.msg.failure</param>
+              <evaluator negate="true">blockchain-proof-file-registered-evaluator</evaluator>
+            </action>-->
+            <action id="com.sphereon.alfresco.pdf.actions.conversionAction"
+                    icon="converions"
+                    type="javascript"
+                    label="com.sphereon.alfresco.pdf.actions.conversionAction.label">
+              <param name="function">onActionFormDialog</param>
+              <param name="itemKind">action</param>
+              <param name="itemId">conversion-action</param> <!-- Repository action id = Spring Bean id -->
+              <param name="mode">create</param>
+              <param name="destination">{node.nodeRef}</param>
+              <param name="successMessage">com.sphereon.alfresco.pdf.actions.conversionAction.msg.success</param>
+              <param name="failureMessage">com.sphereon.alfresco.pdf.actions.conversionAction.msg.failure</param>
+              <!--<evaluator negate="true">alfresco.tutorials.evaluator.isEmailed</evaluator>-->
+            </action>
+
+          </actions>
+
+          <actionGroups>
+            <!-- We want the doclib actions to be visible in the
+                 document-browse and document-details views. -->
+            <actionGroup id="document-browse">
+              <action index="900" id="com.sphereon.alfresco.pdf.actions.conversionAction" />
+<!--              <action index="901" id="com.sphereon.alfresco.actions.blockchain.registerFileAction" />
+              <action index="902" id="com.sphereon.alfresco.actions.blockchain.verifyFileAction" />-->
+            </actionGroup>
+            <actionGroup id="document-details">
+              <action index="900" id="com.sphereon.alfresco.pdf.actions.conversionAction" />
+              <!--<action index="901" id="com.sphereon.alfresco.actions.blockchain.registerFileAction" />
+              <action index="902" id="com.sphereon.alfresco.actions.blockchain.verifyFileAction" />-->
+            </actionGroup>
+
+<!--
+            &lt;!&ndash; The Go To Google action will be visible also in Folder browse view &ndash;&gt;
+            <actionGroup id="folder-browse">
+              <action index="903" id="alfresco.tutorials.doclib.action.goToGoogle" />
+            </actionGroup>
+-->
+          </actionGroups>
+        </config>
+
+        <config evaluator="string-compare"
+                condition="conversion-action"> <!-- ID for the Repository Action that this form is associated with -->
+          <forms>
+            <form>
+              <field-visibility>
+                <!--<show id="sphereon-conversion-target-node"/>-->
+                <show id="sphereon-conversion-engine" force="true"/>
+                <show id="sphereon-conversion-output-file-format" force="true"/>
+                <show id="sphereon-conversion-pdf-version"/>
+                <show id="sphereon-conversion-ocr-mode"/>
+                <show id="sphereon-conversion-container-conversion"/>
+                <show id="sphereon-conversion-register-blockchain"/>
+              </field-visibility>
+              <appearance>
+                <!--<field id="sphereon-conversion-target-node" label-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.target-node.label" description-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.target-node.description">
+                  <control template="/org/alfresco/components/form/controls/association.ftl">
+                    <control-param name="displayMode">list</control-param>
+                    <control-param name="showTargetLink">true</control-param>
+                    <control-param name="compactMode">true</control-param>
+                    <control-param name="startLocation">{ancestor}</control-param>
+                    <control-param name="allowNavigationToContentChildren">true</control-param>
+                  </control>
+                </field>-->
+                <field id="sphereon-conversion-engine" label-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.engine.label" description-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.engine.description">
+                  <control template="/org/alfresco/components/form/controls/selectone.ftl">
+                    <control-param name="options">PREMIUM|Premium (all options - high quality),ADVANCED|Advanced,BASIC|Basic/restricted</control-param>
+                    <control-param name="style">width:275px</control-param>
+                  </control>
+                </field>
+                <field id="sphereon-conversion-output-file-format" label-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.output-file-format.label" description-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.output-file-format.description">
+                  <control template="/org/alfresco/components/form/controls/selectone.ftl">
+                    <control-param name="options">PDF|Pdf,DOCX|MS Word (docx),XLSX|Spreadsheet (xlsx),TIFF|Multipage Tiff image</control-param>
+                    <control-param name="style">width:275px</control-param>
+                  </control>
+                </field>
+                <field id="sphereon-conversion-pdf-version" label-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.pdf-version.label" description-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.pdf-version.description">
+                  <control template="/org/alfresco/components/form/controls/selectone.ftl">
+                    <control-param name="options">PDF_A_1b|Pdf/A-1b (preservation),PDF_1_4|Pdf 1.4,PDF_1_5|Pdf 1.5,PDF_1_6|Pdf 1.6,PDF_1_7|Pdf 1.7</control-param>
+                    <control-param name="style">width:275px</control-param>
+                  </control>
+                </field>
+                <field id="sphereon-conversion-ocr-mode" label-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.ocr-mode.label"  description-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.ocr-mode.description">
+                  <control template="/org/alfresco/components/form/controls/selectone.ftl">
+                    <control-param name="options">AUTO|Only when needed (eg image or non-searchable PDF),ALWAYS|Always perform OCR,NEVER|Never perform any OCR</control-param>
+                    <control-param name="style">width:275px</control-param>
+                  </control>
+                </field>
+                <field id="sphereon-conversion-container-conversion" label-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.container-conversion.label" description-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.container-conversion.description">
+                  <control template="/org/alfresco/components/form/controls/selectone.ftl">
+                    <control-param name="options">ALL|Include all parts,MAIN|Include main/parent parts,SUB|Only include sub/child parts</control-param>
+                    <control-param name="style">width:275px</control-param>
+                  </control>
+                </field>
+                <field id="sphereon-conversion-register-blockchain" label-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.register-blockchain.label" description-id="com.sphereon.alfresco.pdf.actions.conversionAction.form.field.register-blockchain.description">
+                  <control template="/org/alfresco/components/form/controls/checkbox.ftl" />
+                  <control-param name="style">width:275px</control-param>
+                </field>
+              </appearance>
+
+            </form>
+          </forms>
+        </config>
+<!--
+        <config evaluator="string-compare"
+                condition="blockchain-proof-register-file"> &lt;!&ndash; ID for the Repository Action that this form is associated with &ndash;&gt;
+          <forms>
+            <form>
+              <field-visibility>
+                <show id="blockchain-file-remark" force="true"/>
+                <hide id="blockchain-api-access-token" force="true"/>
+                <hide id="blockchain-context" force="true"/>
+                <hide id="blockchain-hash-method"/>
+              </field-visibility>
+              <appearance>
+
+                <field id="blockchain-file-remark" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.file-remark">
+                  <control template="/org/alfresco/components/form/controls/textarea.ftl" />
+                </field>
+                <field id="blockchain-api-access-token" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.api-access-token"/>
+                <field id="blockchain-context" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-context"/>
+                <field id="blockchain-hash-method" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-hash-method">
+                  <control template="/org/alfresco/components/form/controls/selectone.ftl">
+                    <control-param name="options">SHA-256|SHA-256,SHA-512|SHA-512</control-param>
+                  </control>
+                </field>
+              </appearance>
+            </form>
+          </forms>
+        </config>-->
+
+   <!--     <config evaluator="string-compare"
+                condition="blockchain-proof-verify-file">
+&lt;!&ndash;          <dependencies>
+            <js src="resources/add-action-doclib-share/components/documentlibrary/custom-doclib-actions.js" />
+          </dependencies>&ndash;&gt;
+          <forms>
+            <form>
+              <field-visibility>
+&lt;!&ndash;
+                <hide id="blockchain-api-access-token" force="true"/>
+                <hide id="blockchain-context" force="true"/>
+                <hide id="blockchain-hash-method"/>
+&ndash;&gt;
+              </field-visibility>
+              <appearance>
+
+&lt;!&ndash;
+                <field id="blockchain-api-access-token" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.api-access-token"/>
+                <field id="blockchain-context" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-context"/>
+                <field id="blockchain-hash-method" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-hash-method">
+                  <control template="/org/alfresco/components/form/controls/selectone.ftl">
+                    <control-param name="options">SHA-256|SHA-256,SHA-512|SHA-512</control-param>
+                  </control>
+                </field>
+&ndash;&gt;
+              </appearance>
+            </form>
+          </forms>
+        </config>-->
+<!--
+
+        &lt;!&ndash; Bring in custom JavaScript functions called by the callWebScript and showCustomMessage
+             DocLib actions defined above &ndash;&gt;
+        <config evaluator="string-compare" condition="DocLibCustom">
+          <dependencies>
+            <js src="resources/add-action-doclib-share/components/documentlibrary/custom-doclib-actions.js" />
+          </dependencies>
+        </config>
+-->
+      </configurations>
+    </module>
+  </modules>
+</extension>

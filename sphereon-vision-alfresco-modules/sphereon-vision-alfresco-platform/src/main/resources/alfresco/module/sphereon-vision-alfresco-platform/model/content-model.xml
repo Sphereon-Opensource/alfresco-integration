@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2018 Sphereon B.V. <https://sphereon.com>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<model name="spcoc:contentModel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+    <!-- Optional meta-data about the model -->
+    <description>Sphereon Document Model</description>
+    <author>Sphereon BV</author>
+    <version>1.1</version>
+
+    <imports>
+        <!-- Import Alfresco Dictionary Definitions -->
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <!-- Import Alfresco Content Domain Model Definitions -->
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <!-- Import Alfresco System Model Definitions -->
+        <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys"/>
+    </imports>
+
+    <!-- Custom namespace for the ACME company -->
+    <namespaces>
+        <namespace uri="http://www.sphereon.com/model/conversion/content/1.0" prefix="spcoc"/>
+    </namespaces>
+<!--
+    <constraints>
+        <constraint name="spcoc:blockchain-hash-method-options" type="LIST">
+            <parameter name="allowedValues">
+                <list>
+                    <value></value>
+                    &lt;!&ndash; Empty for default search&ndash;&gt;
+                    <value>SHA-256</value>
+                    <value>SHA-512</value>
+                </list>
+            </parameter>
+        </constraint>
+    </constraints>
+
+    &lt;!&ndash; ===============================================================================================================
+        Constraints, Types, and Aspects go here...
+        &ndash;&gt;
+
+    <types>
+        &lt;!&ndash;
+            ACME Enterprise-wide Document root type.
+            All other custom document types would extend this one.
+        &ndash;&gt;
+        <type name="spcoc:document">
+            <title>Blockchain Document Type</title>
+            <parent>cm:content</parent>
+            <properties>
+&lt;!&ndash;
+                <property name="spcoc:document-hash-method">
+                    <title>Document Hash method</title>
+                    <type>d:text</type>
+                </property>
+                <property name="spcoc:document-hash-value">
+                    <title>Document Hash value</title>
+                    <type>d:text</type>
+                </property>
+&ndash;&gt;
+                <property name="spcoc:blockchain-context">
+                    <title>Blockchain Context</title>
+                    <type>d:text</type>
+                </property>
+                <property name="spcoc:blockchain-chain-id">
+                    <title>Blockchain Chain Id</title>
+                    <type>d:text</type>
+                </property>
+                <property name="spcoc:blockchain-file-remark">
+                    <title>Blockchain File remark</title>
+                    <type>d:text</type>
+                </property>
+                <property name="spcoc:blockchain-anchor-time-first">
+                    <title>Blockchain First registration time</title>
+                    <type>d:text</type>
+                    <default>never</default>
+                </property>
+                <property name="spcoc:blockchain-verify-time-last">
+                    <title>Last verification time</title>
+                    <type>d:text</type>
+                    <default>never</default>
+                </property>
+            </properties>
+           <mandatory-aspects>
+                <aspect>spcoc:blockchain-aspect-base</aspect>
+            </mandatory-aspects>
+        </type>
+    </types>
+
+    <aspects>
+        &lt;!&ndash; A document can have security classification applied and
+             faceted search is specifically enabled for best performance and we change
+             default index config to not tokenize the value. &ndash;&gt;
+        <aspect name="spcoc:blockchain-aspect-base">
+            <title>Blockchain registration</title>
+            <description>Content has been registered on the blockchain</description>
+            <properties>
+                <property name="spcoc:blockchain-hash-method">
+                    <type>d:text</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                    <constraints>
+                        <constraint ref="spcoc:blockchain-hash-method-options"/>
+                    </constraints>
+                </property>
+&lt;!&ndash;                <property name="spcoc:document-hash-method">
+                    <title>Document Hash method</title>
+                    <type>d:text</type>
+                </property>&ndash;&gt;
+                <property name="spcoc:blockchain-hash-value">
+                    <title>Document Hash value</title>
+                    <type>d:text</type>
+                    <index enabled="true">
+                        <atomic>true</atomic>
+                        <stored>false</stored>
+                        <tokenised>false</tokenised>
+                    </index>
+                </property>
+            </properties>
+        </aspect>
+    </aspects>-->
+
+</model>
