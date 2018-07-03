@@ -1,6 +1,8 @@
-# Alfresco Sphereon Blockchain AIO Project
+# Alfresco Sphereon Vision AIO Project
 
-This is an All-In-One (AIO) project for Alfresco Sphereon Blockchain integration 
+This is an All-In-One (AIO) project for Alfresco Sphereon Vision integration
+
+__Please note that this module is not working currently!__ 
 
 Run with `mvn clean install -DskipTests=true alfresco:run` or `./run.sh` and verify that it 
 

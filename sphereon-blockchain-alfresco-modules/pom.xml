@@ -22,7 +22,7 @@
     <parent>
         <groupId>com.sphereon.alfresco</groupId>
         <artifactId>sphereon-alfresco-modules</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>0.1.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>sphereon-blockchain-alfresco-modules</artifactId>
@@ -52,21 +52,21 @@
         <!-- Properties used in dependency declarations, you don't need to change these -->
         <alfresco.groupId>org.alfresco</alfresco.groupId>
 
-        <!-- Alfresco Platform and Share webapp versions, these are the original Alfresco webapps that will be
+   <!--     &lt;!&ndash; Alfresco Platform and Share webapp versions, these are the original Alfresco webapps that will be
              customized and then deployed and run by the tomcat maven plugin when
-             executing for example $ mvn clean install alfresco:run -->
+             executing for example $ mvn clean install alfresco:run &ndash;&gt;
         <alfresco.platform.version>5.2.g</alfresco.platform.version>
         <alfresco.share.version>5.2.f</alfresco.share.version>
 
-        <!-- Default is to run with a Community edition, change to 'enterprise' if using Enterprise edition -->
+        &lt;!&ndash; Default is to run with a Community edition, change to 'enterprise' if using Enterprise edition &ndash;&gt;
         <maven.alfresco.edition>community</maven.alfresco.edition>
 
-        <!-- Alfresco Surf version, if you change Share version you might need to change Surf version -->
+        &lt;!&ndash; Alfresco Surf version, if you change Share version you might need to change Surf version &ndash;&gt;
         <alfresco.surf.version>6.11</alfresco.surf.version>
 
-        <!-- JRebel Hot reloading of classpath stuff and web resource stuff -->
+        &lt;!&ndash; JRebel Hot reloading of classpath stuff and web resource stuff &ndash;&gt;
         <jrebel.version>1.1.6</jrebel.version>
-
+-->
         <!-- Environment to use, Alfresco Maven Plugin will
              copy alfresco-global-*.properties files from this directory, such as src/test/properties/local -->
         <env>local</env>

@@ -71,6 +71,11 @@
     <dependencySets>
         <dependencySet>
             <outputDirectory>lib</outputDirectory>
+            <excludes>
+                <exclude>com.sphereon.alfresco:sphereon-base-alfresco-platform</exclude>
+                <exclude>com.sphereon.alfresco:sphereon-base-alfresco-share</exclude>
+                <exclude>com.sphereon.sdk:pdf-sdk-java8-okhttp-gson</exclude>
+            </excludes>
         </dependencySet>
     </dependencySets>
 

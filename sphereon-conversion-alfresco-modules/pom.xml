@@ -20,7 +20,7 @@
 	<parent>
         <groupId>com.sphereon.alfresco</groupId>
         <artifactId>sphereon-alfresco-modules</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>0.1.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>sphereon-conversion-alfresco-modules</artifactId>
@@ -86,36 +86,20 @@
     <!-- IMPORTANT - Test dependencies need to be here in the top parent POM as
                      the Alfresco Maven IT Mojo runs as part of the parent project ... -->
     <dependencies>
-<!--        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.2</version>
-            <scope>test</scope>
-        </dependency>-->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>sphereon-base-alfresco-platform</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
+            <scope>provided</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>sphereon-base-alfresco-share</artifactId>
             <version>${project.version}</version>
             <type>amp</type>
-        </dependency>
+            <scope>provided</scope>
+        </dependency>-->
         <!-- The main Alfresco Repo dependency for compiling Java code in src/main/java -->
         <dependency>
             <groupId>${alfresco.groupId}</groupId>
@@ -146,6 +130,39 @@
             <groupId>com.sphereon.sdk</groupId>
             <artifactId>pdf-sdk-java8-okhttp-gson</artifactId>
             <version>${pdf-sdk.version}</version>
+            <exclusions>
+                <!-- These are provided by the base AMP -->
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <!-- For some reason the above does not seam to work in an AMP project, so list them all here -->
+                <exclusion>
+                    <groupId>com.squareup.okio</groupId>
+                    <artifactId>okio</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.code.gson</groupId>
+                    <artifactId>gson</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.squareup.okio</groupId>
+                    <artifactId>okio</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.squareup.okhttp</groupId>
+                    <artifactId>okhttp</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.squareup.okhttp</groupId>
+                    <artifactId>logging-interceptor</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-annotations</artifactId>
+                </exclusion>
+
+            </exclusions>
         </dependency>
     </dependencies>
 

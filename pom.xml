@@ -19,7 +19,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sphereon.alfresco</groupId>
     <artifactId>sphereon-alfresco-modules</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.1-SNAPSHOT</version>
     <name>Sphereon - Alfresco modules</name>
     <description>Sphereon Alfresco Modules</description>
     <packaging>pom</packaging>
@@ -392,6 +392,6 @@
     <module>sphereon-base-alfresco-modules</module>
     <module>sphereon-blockchain-alfresco-modules</module>
     <module>sphereon-conversion-alfresco-modules</module>
-    <module>sphereon-vision-alfresco-modules</module>
+    <!--<module>sphereon-vision-alfresco-modules</module>-->
   </modules>
 </project>

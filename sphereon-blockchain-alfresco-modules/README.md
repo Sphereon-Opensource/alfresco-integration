@@ -12,7 +12,7 @@ Run with `mvn clean install -DskipTests=true alfresco:run` or `./run.sh` and ver
  
 # Few things to notice
 
- * No parent pom
+ * This project needs the sphereon-base-alfresco-modules
  * No WAR projects, all handled by the Alfresco Maven Plugin 
  * No runner project - it's all in the Alfresco Maven Plugin
  * Standard JAR packaging and layout
