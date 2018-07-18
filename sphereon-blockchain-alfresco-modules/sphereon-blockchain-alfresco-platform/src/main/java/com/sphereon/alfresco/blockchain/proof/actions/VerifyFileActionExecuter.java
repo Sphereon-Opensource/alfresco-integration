@@ -69,11 +69,11 @@ public class VerifyFileActionExecuter extends AbstractBlockchainActionExecuter {
 
 
         String prevLastVerify = Param.BLOCKCHAIN_LAST_VERIFY.getCurrentNodeProperty(nodeService, actionedUponNodeRef);
+        log.info(String.format("Previous last verify was at: %s", prevLastVerify));
         // We update the last verify node value, but return the previous verify time to the user as this is the time you are interested in for displays/forms/behaviour
         Param.BLOCKCHAIN_LAST_VERIFY.updateActionStringValue(ruleAction, OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME));
         Param.BLOCKCHAIN_LAST_VERIFY.updateNodePropertyFromActionParam(nodeService, actionedUponNodeRef, ruleAction);
         Param.BLOCKCHAIN_LAST_VERIFY.updateActionStringValue(ruleAction, prevLastVerify);
-        log.info(msg);
     }
 
 

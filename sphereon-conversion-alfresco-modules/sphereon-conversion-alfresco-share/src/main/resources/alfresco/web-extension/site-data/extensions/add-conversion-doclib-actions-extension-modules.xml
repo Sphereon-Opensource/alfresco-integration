@@ -178,8 +178,8 @@
               <field-visibility>
                 <show id="blockchain-file-remark" force="true"/>
                 <hide id="blockchain-api-access-token" force="true"/>
-                <hide id="blockchain-context" force="true"/>
-                <hide id="blockchain-hash-method"/>
+                <hide id="blockchainContext" force="true"/>
+                <hide id="blockchainHashMethod"/>
               </field-visibility>
               <appearance>
 
@@ -187,8 +187,8 @@
                   <control template="/org/alfresco/components/form/controls/textarea.ftl" />
                 </field>
                 <field id="blockchain-api-access-token" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.api-access-token"/>
-                <field id="blockchain-context" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-context"/>
-                <field id="blockchain-hash-method" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-hash-method">
+                <field id="blockchainContext" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchainContext"/>
+                <field id="blockchainHashMethod" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchainHashMethod">
                   <control template="/org/alfresco/components/form/controls/selectone.ftl">
                     <control-param name="options">SHA-256|SHA-256,SHA-512|SHA-512</control-param>
                   </control>
@@ -208,16 +208,16 @@
               <field-visibility>
 &lt;!&ndash;
                 <hide id="blockchain-api-access-token" force="true"/>
-                <hide id="blockchain-context" force="true"/>
-                <hide id="blockchain-hash-method"/>
+                <hide id="blockchainContext" force="true"/>
+                <hide id="blockchainHashMethod"/>
 &ndash;&gt;
               </field-visibility>
               <appearance>
 
 &lt;!&ndash;
                 <field id="blockchain-api-access-token" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.api-access-token"/>
-                <field id="blockchain-context" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-context"/>
-                <field id="blockchain-hash-method" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-hash-method">
+                <field id="blockchainContext" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchainContext"/>
+                <field id="blockchainHashMethod" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchainHashMethod">
                   <control template="/org/alfresco/components/form/controls/selectone.ftl">
                     <control-param name="options">SHA-256|SHA-256,SHA-512|SHA-512</control-param>
                   </control>

@@ -28,19 +28,19 @@ import org.alfresco.service.namespace.QName;
 public enum Param {
 
 
-    BLOCKCHAIN_CONTEXT("blockchain-context", DataTypeDefinition.TEXT, true),
-    BLOCKCHAIN_CHAIN_ID("blockchain-chain-id", DataTypeDefinition.TEXT, false),
-    BLOCKCHAIN_ENTRY_ID("blockchain-entry-id", DataTypeDefinition.TEXT, false),
-    BLOCKCHAIN_HASH_VALUE("blockchain-hash-value", DataTypeDefinition.TEXT, false),
-    BLOCKCHAIN_HASH_METHOD("blockchain-hash-method", DataTypeDefinition.TEXT, false),
+    BLOCKCHAIN_CONTEXT("blockchainContext", DataTypeDefinition.TEXT, true),
+    BLOCKCHAIN_CHAIN_ID("blockchainChainId", DataTypeDefinition.TEXT, false),
+    BLOCKCHAIN_ENTRY_ID("blockchainEntryId", DataTypeDefinition.TEXT, false),
+    BLOCKCHAIN_HASH_VALUE("blockchainHashValue", DataTypeDefinition.TEXT, false),
+    BLOCKCHAIN_HASH_METHOD("blockchainHashMethod", DataTypeDefinition.TEXT, false),
     BLOCKCHAIN_FILE_REMARK("blockchain-file-remark", DataTypeDefinition.TEXT, false),
 //    BLOCKCHAIN_ENTRY_BODY("blockchain-entry-body", DataTypeDefinition.ANY, false),
 //    BLOCKCHAIN_ENTRY_METADATA("blockchain-entry-metadata", DataTypeDefinition.ANY, false),
 //    BLOCKCHAIN_INCLUDE_CONTENT_HASH("blockchain-include-content-hash", DataTypeDefinition.BOOLEAN, false),
-    BLOCKCHAIN_ANCHOR_TIME_FIRST("blockchain-anchor-time-first", DataTypeDefinition.TEXT, false),
-    BLOCKCHAIN_LAST_VERIFY("blockchain-verify-time-last", DataTypeDefinition.TEXT, false),
-    BLOCKCHAIN_EXISTED("blockchain-existed", DataTypeDefinition.BOOLEAN, false),
-    BLOCKCHAIN_EXISTS("blockchain-exists", DataTypeDefinition.BOOLEAN, false);
+    BLOCKCHAIN_ANCHOR_TIME_FIRST("blockchainAnchorTimeFirst", DataTypeDefinition.TEXT, false),
+    BLOCKCHAIN_LAST_VERIFY("blockchainVerifyTimeLast", DataTypeDefinition.TEXT, false),
+    BLOCKCHAIN_EXISTED("blockchainExisted", DataTypeDefinition.BOOLEAN, false),
+    BLOCKCHAIN_EXISTS("blockchainExists", DataTypeDefinition.BOOLEAN, false);
 
 
     private final String paramName;

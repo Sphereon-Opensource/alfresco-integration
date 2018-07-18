@@ -37,7 +37,7 @@
     </namespaces>
 
     <constraints>
-        <constraint name="spbcc:blockchain-hash-method-options" type="LIST">
+        <constraint name="spbcc:blockchainHashMethodOptions" type="LIST">
             <parameter name="allowedValues">
                 <list>
                     <value></value>
@@ -72,11 +72,11 @@
                     <type>d:text</type>
                 </property>
 -->
-                <property name="spbcc:blockchain-context">
+                <property name="spbcc:blockchainContext">
                     <title>Blockchain Context</title>
                     <type>d:text</type>
                 </property>
-                <property name="spbcc:blockchain-chain-id">
+                <property name="spbcc:blockchainChainId">
                     <title>Blockchain Chain Id</title>
                     <type>d:text</type>
                 </property>
@@ -84,19 +84,19 @@
                     <title>Blockchain File remark</title>
                     <type>d:text</type>
                 </property>
-                <property name="spbcc:blockchain-anchor-time-first">
+                <property name="spbcc:blockchainAnchorTimeFirst">
                     <title>Blockchain First registration time</title>
                     <type>d:text</type>
                     <default>never</default>
                 </property>
-                <property name="spbcc:blockchain-verify-time-last">
+                <property name="spbcc:blockchainVerifyTimeLast">
                     <title>Last verification time</title>
                     <type>d:text</type>
                     <default>never</default>
                 </property>
             </properties>
            <mandatory-aspects>
-                <aspect>spbcc:blockchain-aspect-base</aspect>
+                <aspect>spbcc:blockchainAspectBase</aspect>
             </mandatory-aspects>
         </type>
     </types>
@@ -105,11 +105,11 @@
         <!-- A document can have security classification applied and
              faceted search is specifically enabled for best performance and we change
              default index config to not tokenize the value. -->
-        <aspect name="spbcc:blockchain-aspect-base">
+        <aspect name="spbcc:blockchainAspectBase">
             <title>Blockchain registration</title>
             <description>Content has been registered on the blockchain</description>
             <properties>
-                <property name="spbcc:blockchain-hash-method">
+                <property name="spbcc:blockchainHashMethod">
                     <type>d:text</type>
                     <index enabled="true">
                         <atomic>true</atomic>
@@ -117,14 +117,14 @@
                         <tokenised>false</tokenised>
                     </index>
                     <constraints>
-                        <constraint ref="spbcc:blockchain-hash-method-options"/>
+                        <constraint ref="spbcc:blockchainHashMethodOptions"/>
                     </constraints>
                 </property>
 <!--                <property name="spbcc:document-hash-method">
                     <title>Document Hash method</title>
                     <type>d:text</type>
                 </property>-->
-                <property name="spbcc:blockchain-hash-value">
+                <property name="spbcc:blockchainHashValue">
                     <title>Document Hash value</title>
                     <type>d:text</type>
                     <index enabled="true">

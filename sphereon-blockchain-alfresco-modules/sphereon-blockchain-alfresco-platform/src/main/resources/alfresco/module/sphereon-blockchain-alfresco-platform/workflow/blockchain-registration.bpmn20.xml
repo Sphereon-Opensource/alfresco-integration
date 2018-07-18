@@ -34,23 +34,22 @@
                                        class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
                     <activiti:field name="script">
                         <activiti:string>
-                            if(task.getVariableLocal('spw_approveRejectOutcome') == 'Approve') {
-                            var newApprovedCount = spw_approveCount + 1;
-                            execution.setVariable('spw_approveCount', newApprovedCount);
+                            if(task.getVariableLocal('spbcw_approveRejectOutcome') == 'Approve') {
+                                var newApprovedCount = spbcw_approveCount + 1;
+                                execution.setVariable('spbcw_approveCount', newApprovedCount);
                             }
 
                             var blockchainRegistration = actions.create("blockchain-proof-register-file");
                             blockchainRegistration.parameters["spbcc:blockchain-file-remark"] = 'Approval outcome 1: '+
-                            task.getVariableLocal('spw_approveRejectOutcome') ;
+                                                                        task.getVariableLocal('spbcw_approveRejectOutcome') ;
                             blockchainRegistration.parameters["blockchain-file-remark"] = 'Approval outcome 2: '+
-                            task.getVariableLocal('spw_approveRejectOutcome') ;
+                                                                        task.getVariableLocal('spbcw_approveRejectOutcome') ;
                             for (var i = 0; i &lt; bpm_package.children.length; i++) {
-                            if (!bpm_package.children[i].hasAspect('spbcc:blockchain-aspect'))
-                            {
-                            bpm_package.children[i].addAspect('spbcc:blockchain-aspect');
-                            }
-                            logger.log("Approving node:" + bpm_package.children[i].nodeRef);
-                            blockchainRegistration.execute(bpm_package.children[i]);
+                                if (!bpm_package.children[i].hasAspect('spbcc:blockchainAspectBase')) {
+                                    bpm_package.children[i].addAspect('spbcc:blockchainAspectBase');
+                                }
+                                logger.log("Approving node:" + bpm_package.children[i].nodeRef);
+                                blockchainRegistration.execute(bpm_package.children[i]);
                             }
                         </activiti:string>
                     </activiti:field>
@@ -71,10 +70,11 @@
                 <activiti:taskListener event="complete"
                                        class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
                     <activiti:field name="script">
-                        <activiti:string>if(task.getVariableLocal('spw_approveRejectOutcome') == 'Approve') {
-                            execution.setVariable('spw_tpApproved', true);
+                        <activiti:string>
+                            if(task.getVariableLocal('spbcw_approveRejectOutcome') == 'Approve') {
+                                execution.setVariable('spbcw_tpApproved', true);
                             } else {
-                            execution.setVariable('spw_tpApproved', false);
+                                execution.setVariable('spbcw_tpApproved', false);
                             }
                         </activiti:string>
                     </activiti:field>
@@ -87,10 +87,10 @@
                 <activiti:taskListener event="complete"
                                        class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
                     <activiti:field name="script">
-                        <activiti:string>if(task.getVariableLocal('spw_reviseOutcome') == 'Re-submit') {
-                            execution.setVariable('spw_resubmit', true);
+                        <activiti:string>if(task.getVariableLocal('spbcw_reviseOutcome') == 'Re-submit') {
+                                execution.setVariable('spbcw_resubmit', true);
                             } else {
-                            execution.setVariable('spw_resubmit', false);
+                                execution.setVariable('spbcw_resubmit', false);
                             }
                         </activiti:string>
                     </activiti:field>
@@ -104,23 +104,22 @@
                                        class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
                     <activiti:field name="script">
                         <activiti:string>
-                            if(task.getVariableLocal('spw_approveRejectOutcome') == 'Approve') {
-                            var newApprovedCount = spw_approveCount + 1;
-                            execution.setVariable('spw_approveCount', newApprovedCount);
+                            if(task.getVariableLocal('spbcw_approveRejectOutcome') == 'Approve') {
+                                var newApprovedCount = spbcw_approveCount + 1;
+                                execution.setVariable('spbcw_approveCount', newApprovedCount);
                             }
 
                             var blockchainRegistration = actions.create("blockchain-proof-register-file");
                             blockchainRegistration.parameters["spbcc:blockchain-file-remark"] = 'Approval outcome: '+
-                            task.getVariableLocal('spw_approveRejectOutcome') ;
+                                                            task.getVariableLocal('spbcw_approveRejectOutcome') ;
                             blockchainRegistration.parameters["blockchain-file-remark"] = 'Approval outcome: '+
-                            task.getVariableLocal('spw_approveRejectOutcome') ;
+                                                            task.getVariableLocal('spbcw_approveRejectOutcome') ;
                             for (var i = 0; i &lt; bpm_package.children.length; i++) {
-                            if (!bpm_package.children[i].hasAspect('spbcc:blockchain-aspect'))
-                            {
-                            bpm_package.children[i].addAspect('spbcc:blockchain-aspect');
-                            }
-                            logger.log("Approving node:" + bpm_package.children[i].nodeRef);
-                            blockchainRegistration.execute(bpm_package.children[i]);
+                                if (!bpm_package.children[i].hasAspect('spbcc:blockchainAspectBase')) {
+                                    bpm_package.children[i].addAspect('spbcc:blockchainAspectBase');
+                                }
+                                logger.log("Approving node:" + bpm_package.children[i].nodeRef);
+                                blockchainRegistration.execute(bpm_package.children[i]);
                             }
                         </activiti:string>
                     </activiti:field>
@@ -135,8 +134,8 @@
                 </activiti:field>
                 <activiti:field name="script">
                     <activiti:string><![CDATA[
-              execution.setVariable('spw_approveCount', 0);
-              execution.setVariable('spw_tpApproved', false);
+              execution.setVariable('spbcw_approveCount', 0);
+              execution.setVariable('spbcw_tpApproved', false);
           ]]></activiti:string>
                 </activiti:field>
             </extensionElements>
@@ -153,21 +152,21 @@
         <sequenceFlow id="flow6" sourceRef="usertask4" targetRef="parallelgateway2"></sequenceFlow>
         <sequenceFlow id="flow7" sourceRef="parallelgateway2" targetRef="exclusivegateway1"></sequenceFlow>
         <sequenceFlow id="flow8" sourceRef="exclusivegateway1" targetRef="exclusivegateway2">
-            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${spw_approveCount == 2}]]></conditionExpression>
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${spbcw_approveCount == 2}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="flow9" sourceRef="exclusivegateway1" targetRef="usertask3">
-            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${spw_approveCount < 2}]]></conditionExpression>
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${spbcw_approveCount < 2}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="flow11" sourceRef="exclusivegateway2" targetRef="usertask2">
             <conditionExpression xsi:type="tFormalExpression">
-                <![CDATA[${spw_reviewerEmail != ''}]]></conditionExpression>
+                <![CDATA[${spbcw_reviewerEmail != ''}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="flow12" sourceRef="usertask2" targetRef="usertask3">
             <conditionExpression xsi:type="tFormalExpression">
-                <![CDATA[${spw_tpApproved == false}]]></conditionExpression>
+                <![CDATA[${spbcw_tpApproved == false}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="flow13" sourceRef="usertask3" targetRef="scripttask1">
-            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${spw_resubmit == true}]]></conditionExpression>
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${spbcw_resubmit == true}]]></conditionExpression>
         </sequenceFlow>
         <userTask id="usertask5" name="Approved Notification" activiti:assignee="${initiator.properties.userName}"
                   activiti:formKey="spbcw:activitiApprovedNotification">
@@ -189,15 +188,15 @@
         </userTask>
         <sequenceFlow id="flow14" sourceRef="exclusivegateway2" targetRef="usertask5">
             <conditionExpression xsi:type="tFormalExpression">
-                <![CDATA[${spw_reviewerEmail == ''}]]></conditionExpression>
+                <![CDATA[${spbcw_reviewerEmail == ''}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="flow15" sourceRef="usertask5" targetRef="endevent1"></sequenceFlow>
         <sequenceFlow id="flow16" sourceRef="usertask3" targetRef="endevent1">
-            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${spw_resubmit == false}]]></conditionExpression>
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${spbcw_resubmit == false}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="flow17" sourceRef="usertask2" targetRef="usertask5">
             <conditionExpression xsi:type="tFormalExpression">
-                <![CDATA[${spw_tpApproved == true}]]></conditionExpression>
+                <![CDATA[${spbcw_tpApproved == true}]]></conditionExpression>
         </sequenceFlow>
     </process>
     <bpmndi:BPMNDiagram id="BPMNDiagram_blockchainRegistration">

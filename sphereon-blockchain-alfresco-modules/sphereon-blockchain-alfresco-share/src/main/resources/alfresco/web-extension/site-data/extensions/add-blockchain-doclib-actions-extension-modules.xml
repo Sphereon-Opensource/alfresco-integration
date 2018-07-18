@@ -18,7 +18,7 @@
   <modules>
     <module>
       <id>Add Blockchain Document Libarary Actions</id>
-      <version>0.1.0</version>
+      <version>0.1.1</version>
       <auto-deploy>true</auto-deploy>
       <configurations>
       <!--  <config evaluator="string-compare" condition="DocumentLibrary">
@@ -82,13 +82,6 @@
               <action index="901" id="com.sphereon.alfresco.actions.blockchain.registerFileAction" />
               <action index="902" id="com.sphereon.alfresco.actions.blockchain.verifyFileAction" />
             </actionGroup>
-
-<!--
-            &lt;!&ndash; The Go To Google action will be visible also in Folder browse view &ndash;&gt;
-            <actionGroup id="folder-browse">
-              <action index="903" id="alfresco.tutorials.doclib.action.goToGoogle" />
-            </actionGroup>
--->
           </actionGroups>
         </config>
 
@@ -100,8 +93,8 @@
               <field-visibility>
                 <show id="blockchain-file-remark" force="true"/>
                 <hide id="blockchain-api-access-token" force="true"/>
-                <hide id="blockchain-context" force="true"/>
-                <hide id="blockchain-hash-method"/>
+                <hide id="blockchainContext" force="true"/>
+                <hide id="blockchainHashMethod"/>
               </field-visibility>
               <appearance>
 
@@ -109,8 +102,8 @@
                   <control template="/org/alfresco/components/form/controls/textarea.ftl" />
                 </field>
                 <field id="blockchain-api-access-token" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.api-access-token"/>
-                <field id="blockchain-context" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-context"/>
-                <field id="blockchain-hash-method" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-hash-method">
+                <field id="blockchainContext" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchainContext"/>
+                <field id="blockchainHashMethod" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchainHashMethod">
                   <control template="/org/alfresco/components/form/controls/selectone.ftl">
                     <control-param name="options">SHA-256|SHA-256,SHA-512|SHA-512</control-param>
                   </control>
@@ -130,16 +123,16 @@
               <field-visibility>
 <!--
                 <hide id="blockchain-api-access-token" force="true"/>
-                <hide id="blockchain-context" force="true"/>
-                <hide id="blockchain-hash-method"/>
+                <hide id="blockchainContext" force="true"/>
+                <hide id="blockchainHashMethod"/>
 -->
               </field-visibility>
               <appearance>
 
 <!--
                 <field id="blockchain-api-access-token" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.api-access-token"/>
-                <field id="blockchain-context" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-context"/>
-                <field id="blockchain-hash-method" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchain-hash-method">
+                <field id="blockchainContext" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchainContext"/>
+                <field id="blockchainHashMethod" label-id="com.sphereon.alfresco.actions.blockchain.registerFileAction.form.field.blockchainHashMethod">
                   <control template="/org/alfresco/components/form/controls/selectone.ftl">
                     <control-param name="options">SHA-256|SHA-256,SHA-512|SHA-512</control-param>
                   </control>

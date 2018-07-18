@@ -24,7 +24,7 @@ import org.json.simple.JSONObject;
  * Created by niels on 10-Jul-17.
  */
 public class BlockchainRegisteredEvaluator extends BaseEvaluator {
-    private static final String ASPECT_REGISTERED = "blockchain-aspect";
+    private static final String ASPECT_REGISTERED = "blockchainAspectBase";
 
     @Override
     public boolean evaluate(JSONObject jsonObject) {

@@ -71,16 +71,17 @@ public class BlockchainRegistrationNodeUpdater {
             VerifyContentResponse verifyContentResponse = delegate.verifyContent(hash, Optional.of(id));
 
             if (verifyContentResponse != null && verifyContentResponse.getRegistrationState() == VerifyContentResponse.RegistrationStateEnum.REGISTERED) {
-                Param.BLOCKCHAIN_ANCHOR_TIME_FIRST.updateActionStringValue(ruleAction, verifyContentResponse.getRegistrationTime().format(DateTimeFormatter.ISO_DATE_TIME));
+                String regTime = verifyContentResponse.getRegistrationTime().format(DateTimeFormatter.ISO_DATE_TIME);
+                Param.BLOCKCHAIN_ANCHOR_TIME_FIRST.updateActionStringValue(ruleAction, regTime);
                 Param.BLOCKCHAIN_ANCHOR_TIME_FIRST.updateNodePropertyFromActionParam(nodeService, actionedUponNodeRef, ruleAction);
-                RegisterFileActionExecuter.log.info(String.format("File for id %s was registered at try %d for config %s at %s, hash %s", id, run, delegate.getConfig().getConfigName(), verifyContentResponse.getRegistrationTime().format(DateTimeFormatter.ISO_DATE_TIME), hexHash));
+                RegisterFileActionExecuter.log.info(String.format("File for id %s was registered at try %d for config %s at %s, hash %s", id, run, delegate.getConfig().getConfigName(), regTime, hexHash));
                 return;
             } else if (run >= MAX_COUNT) {
                 RegisterFileActionExecuter.log.warn(String.format("File for id %s could not be verified after %d tries for config %s, state %s,  hash %s", id, run, delegate.getConfig().getConfigName(), verifyContentResponse == null ? "unknown" : verifyContentResponse.getRegistrationState(), hexHash));
                 return;
             }
 
-            RegisterFileActionExecuter.log.debug(String.format("File for id %s was not registered at try %d, state %s,  hash %s", id, run, delegate.getConfig().getConfigName(), verifyContentResponse == null ? "unknown" : verifyContentResponse.getRegistrationState(), hexHash));
+            RegisterFileActionExecuter.log.debug(String.format("File for id %s was not registered at try %d, state %s, hash %s. Will retry validation in %d sec", id, run, delegate.getConfig().getConfigName(), verifyContentResponse == null ? "unknown" : verifyContentResponse.getRegistrationState(), hexHash, INTERVAL_SEC));
             try {
                 Thread.sleep(INTERVAL_SEC * 1000);
                 EXECUTOR_SERVICE.submit(this);

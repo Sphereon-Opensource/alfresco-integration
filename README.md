@@ -1,18 +1,23 @@
-# Alfresco Sphereon Blockchain AIO Project
+# Alfresco Sphereon Integration
 
-This is an All-In-One (AIO) project for Alfresco Sphereon Blockchain integration 
+This is a multi module project for all Alfresco integrations from Sphereon.
 
-Run with `mvn clean install -DskipTests=true alfresco:run` or `./run.sh` and verify that it 
+Please note that the sphereon-base modules are prerequisites for all other Alfresco integrations from Sphereon, as they contain shared libraries and code.
 
- * Runs the embedded Tomcat + H2 DB 
- * Runs Alfresco Platform (Repository)
- * Runs Alfresco Solr4
- * Runs Alfresco Share
+Run with `mvn clean install -DskipTests=true` and verify that it 
+
+ * Builds all individual modules
  * Packages both as JAR and AMP assembly for modules
  
-# Few things to notice
 
- * No parent pom
+Currently the following integrations are available for Alfresco:
+
+ * Blockchain integration. This uses Sphereon Blockchain-proof and Easy-Blockchain APIs to register fingerprints on multiple blockchain implementations
+ * PDF conversion. This uses the Sphereon Conversion2PDF API to convert almost any file to PDF
+ 
+ 
+# Few things to notice from standard Alfresco SDK projects
+
  * No WAR projects, all handled by the Alfresco Maven Plugin 
  * No runner project - it's all in the Alfresco Maven Plugin
  * Standard JAR packaging and layout

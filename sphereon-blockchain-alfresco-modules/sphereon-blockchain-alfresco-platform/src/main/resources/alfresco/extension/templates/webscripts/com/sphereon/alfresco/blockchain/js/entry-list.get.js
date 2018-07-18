@@ -21,5 +21,5 @@ if (typeof someUndeclaredVariable != "undefined") {
     model.result = verification.parameters;
 } else {
     model.result = [];
-    model.result['blockchain-exists'] = false;
+    model.result['blockchainExists'] = false;
 }

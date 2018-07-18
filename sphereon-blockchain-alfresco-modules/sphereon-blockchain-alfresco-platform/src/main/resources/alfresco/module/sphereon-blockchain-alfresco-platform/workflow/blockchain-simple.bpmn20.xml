@@ -40,7 +40,7 @@
             <extensionElements>
                 <activiti:executionListener event="start" class="org.alfresco.repo.workflow.activiti.listener.ScriptExecutionListener">
                     <activiti:field name="script">
-                        <activiti:string><![CDATA[logger.log("Hello, " + spw_helloName + "!");]]></activiti:string>
+                        <activiti:string><![CDATA[logger.log("Hello, " + spbcw_helloName + "!");]]></activiti:string>
                     </activiti:field>
                 </activiti:executionListener>
             </extensionElements>

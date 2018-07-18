@@ -50,6 +50,7 @@ public class RegisterFileActionExecuter extends AbstractBlockchainActionExecuter
         }
         updateMissingParams(ruleAction);
 
+        // TODO: 13-7-2018 Since we use blockchain proof withouth metadata support currently remark is not used
         String remark = Param.BLOCKCHAIN_FILE_REMARK.getValueAsString(ruleAction);
 
 
@@ -82,7 +83,7 @@ public class RegisterFileActionExecuter extends AbstractBlockchainActionExecuter
         Param.BLOCKCHAIN_CONTEXT.updateNodePropertyFromActionParam(nodeService, actionedUponNodeRef, ruleAction);
 
         nodeUpdater.afterAnchoring(delegate, nodeService, ruleAction, actionedUponNodeRef, hash, hexHash);
-        log.info(String.format("Started validation in background for id %s, config %s, hash %s", id, delegate.getConfig().getConfigName(), hexHash));
+        log.info(String.format("Started registration validation in background for id %s, config %s, hash %s", id, delegate.getConfig().getConfigName(), hexHash));
     }
 
 

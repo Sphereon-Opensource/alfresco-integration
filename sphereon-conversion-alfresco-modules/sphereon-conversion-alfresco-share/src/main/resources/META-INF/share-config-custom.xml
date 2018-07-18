@@ -43,7 +43,7 @@
    <!-- <config evaluator="string-compare" condition="DocumentLibrary">
         <aspects>
             <visible>
-                <aspect name="spcoc:blockchain-aspect-base"/>
+                <aspect name="spcoc:blockchainAspectBase"/>
                 <aspect name="spcoc:blockchain-aspect-details"/>
             </visible>
             <addable> &lt;!&ndash; defaults to visible config &ndash;&gt;
@@ -196,12 +196,12 @@
                     <show id="surf:label"/>
 
                     &lt;!&ndash; ACME custom props &ndash;&gt;
-                    <show id="spcoc:blockchain-context" force="true" for-mode="view"/>
-                    <show id="spcoc:blockchain-chain-id" for-mode="view"/>
-                    <show id="spcoc:blockchain-hash-method" for-mode="view"/>
-                    <show id="spcoc:blockchain-hash-value" force="true" for-mode="view"/>
-                    <show id="spcoc:blockchain-anchor-time-first" for-mode="view"/>
-                    <show id="spcoc:blockchain-verify-time-last" for-mode="view"/>
+                    <show id="spcoc:blockchainContext" force="true" for-mode="view"/>
+                    <show id="spcoc:blockchainChainId" for-mode="view"/>
+                    <show id="spcoc:blockchainHashMethod" for-mode="view"/>
+                    <show id="spcoc:blockchainHashValue" force="true" for-mode="view"/>
+                    <show id="spcoc:blockchainAnchorTimeFirst" for-mode="view"/>
+                    <show id="spcoc:blockchainVerifyTimeLast" for-mode="view"/>
                 </field-visibility>
                 <appearance>
                     <field id="cm:name">
@@ -254,19 +254,19 @@
                     &lt;!&ndash; ACME Props appearance &ndash;&gt;
                     <set id="blockchainBaseSet" appearance="bordered-panel" label-id="Blockchain registration" template="/org/alfresco/components/form/2-column-set.ftl"/>
                     <set id="blockchainDetailsDocSet" appearance="bordered-panel" label-id="Blockchain details"/>
-                    <field id="spcoc:blockchain-anchor-time-first" label-id="First registration"
+                    <field id="spcoc:blockchainAnchorTimeFirst" label-id="First registration"
                            set="blockchainBaseSet" read-only="true"/>
-                    <field id="spcoc:blockchain-verify-time-last" label-id="Last verification"
+                    <field id="spcoc:blockchainVerifyTimeLast" label-id="Last verification"
                            set="blockchainBaseSet" read-only="true"/>
-                    <field id="spcoc:blockchain-context" label-id="Context" set="blockchainDetailsDocSet" read-only="true">
+                    <field id="spcoc:blockchainContext" label-id="Context" set="blockchainDetailsDocSet" read-only="true">
                         <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
                     </field>
-                    <field id="spcoc:blockchain-chain-id" label-id="Chain Id" set="blockchainDetailsDocSet" read-only="true">
+                    <field id="spcoc:blockchainChainId" label-id="Chain Id" set="blockchainDetailsDocSet" read-only="true">
                         <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
                     </field>
-                    <field id="spcoc:blockchain-hash-method" label-id="Hash method"
+                    <field id="spcoc:blockchainHashMethod" label-id="Hash method"
                            set="blockchainDetailsDocSet" read-only="true"/>
-                    <field id="spcoc:blockchain-hash-value" label-id="File hash"
+                    <field id="spcoc:blockchainHashValue" label-id="File hash"
                            set="blockchainDetailsDocSet" read-only="true"/>
 
                 </appearance>
@@ -344,13 +344,13 @@
 &lt;!&ndash;
                     &lt;!&ndash; ACME Props appearance &ndash;&gt;
                     <set id="blockchainBaseSet" appearance="bordered-panel" label-id="Blockchain properties"/>
-                    <field id="spcoc:blockchain-context" label-id="Context" set="blockchainBaseSet">
+                    <field id="spcoc:blockchainContext" label-id="Context" set="blockchainBaseSet">
                         <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
                     </field>
-                    <field id="spcoc:blockchain-chain-id" label-id="Chain Id" set="blockchainBaseSet">
+                    <field id="spcoc:blockchainChainId" label-id="Chain Id" set="blockchainBaseSet">
                         <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
                     </field>
-                    <field id="spcoc:blockchain-hash-value" label-id="File hash"
+                    <field id="spcoc:blockchainHashValue" label-id="File hash"
                            set="blockchainBaseSet"/>&ndash;&gt;
                 </appearance>
             </form>
@@ -370,10 +370,10 @@
                     <show id="app:editInline" force="true"/>
 
                     &lt;!&ndash; ACME custom props &ndash;&gt;
-                    <show id="spcoc:blockchain-context"/>
-                    <show id="spcoc:blockchain-chain-id"/>
-                    <show id="spcoc:blockchain-hash-value" force="true"/>
-                    <show id="spcoc:blockchain-anchor-time-first"/>
+                    <show id="spcoc:blockchainContext"/>
+                    <show id="spcoc:blockchainChainId"/>
+                    <show id="spcoc:blockchainHashValue" force="true"/>
+                    <show id="spcoc:blockchainAnchorTimeFirst"/>
                 </field-visibility>
                 <appearance>
                     <field id="cm:name">
@@ -402,16 +402,16 @@
 
                     &lt;!&ndash; ACME Props appearance &ndash;&gt;
                     <set id="blockchainBaseSet" appearance="bordered-panel" label-id="Blockchain registration"/>
-                    <field id="spcoc:blockchain-context" label-id="Blockchain context" set="blockchainBaseSet">
+                    <field id="spcoc:blockchainContext" label-id="Blockchain context" set="blockchainBaseSet">
                         <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
                     </field>
-                    <field id="spcoc:blockchain-chain-id" label-id="Chain id" set="blockchainBaseSet">
+                    <field id="spcoc:blockchainChainId" label-id="Chain id" set="blockchainBaseSet">
                         <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
                     </field>
-                    <field id="spcoc:blockchain-hash-value" label-id="File hash" set="blockchainBaseSet">
+                    <field id="spcoc:blockchainHashValue" label-id="File hash" set="blockchainBaseSet">
                         <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
                     </field>
-                    <field id="spcoc:blockchain-anchor-time-first" label-id="First registration time" set="blockchainBaseSet">
+                    <field id="spcoc:blockchainAnchorTimeFirst" label-id="First registration time" set="blockchainBaseSet">
                         <control template="/org/alfresco/components/form/controls/daterange.ftl" />
                     </field>
                 </appearance>
@@ -427,8 +427,8 @@
                     <show id="cm:modifier"/>
 
                     &lt;!&ndash; Blockchain custom props &ndash;&gt;
-                    <show id="spcoc:blockchain-context"/>
-                    <show id="spcoc:blockchain-hash-value" force="true"/>
+                    <show id="spcoc:blockchainContext"/>
+                    <show id="spcoc:blockchainHashValue" force="true"/>
                 </field-visibility>
                 <appearance>
                     <field id="mimetype">
@@ -445,10 +445,10 @@
 
                     &lt;!&ndash; ACME Props appearance &ndash;&gt;
                     <set id="blockchainBaseSet" appearance="bordered-panel" label-id="Blockchain properties"/>
-                    <field id="spcoc:blockchain-context" label-id="Blockchain context" set="blockchainBaseSet">
+                    <field id="spcoc:blockchainContext" label-id="Blockchain context" set="blockchainBaseSet">
                         <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
                     </field>
-                    <field id="spcoc:blockchain-hash-value" label-id="File hash" set="blockchainBaseSet">
+                    <field id="spcoc:blockchainHashValue" label-id="File hash" set="blockchainBaseSet">
                         <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
                     </field>
                 </appearance>

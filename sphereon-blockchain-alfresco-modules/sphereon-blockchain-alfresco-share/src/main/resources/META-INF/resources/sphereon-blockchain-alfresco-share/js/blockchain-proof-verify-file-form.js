@@ -36,13 +36,8 @@
                                                         this.destroy();
                                                     },
                                                     isDefault: true
-                                                }/*,
-                                                {
-                                                    text: this.msg("button.cancel"),
-                                                    handler: function org_alfresco_training_onActionCallWebScriptSuccess_cancel() {
-                                                        this.destroy();
-                                                    }
-                                                }*/]
+                                                }
+                                                ]
                                         });
 
                                 },
@@ -50,7 +45,7 @@
                             }
                         },
                         failure: {
-                            message: this.msg("alfresco.tutorials.doclib.action.callWebScript.msg.failure",
+                            message: this.msg("com.sphereon.alfresco.actions.blockchain.callWebScript.msg.failure",
                                 file.displayName, Alfresco.constants.USERNAME)
                         },
                         webscript: {
