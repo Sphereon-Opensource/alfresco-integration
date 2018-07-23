@@ -16,7 +16,7 @@
 
 model.fileName = args["fileName"];
 if (typeof someUndeclaredVariable != "undefined") {
-    var verification = actions.create("blockchain-proof-verify-file");
+    var verification = actions.create("blockchainProofVerifyFile");
     verification.execute(search.findNode(args["nodeRef"]));
     model.result = verification.parameters;
 } else {

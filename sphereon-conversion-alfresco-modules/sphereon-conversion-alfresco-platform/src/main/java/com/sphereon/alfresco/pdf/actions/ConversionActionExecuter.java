@@ -31,7 +31,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 
 public class ConversionActionExecuter extends AbstractActionExecuter {
-    public static final String NAME = "conversion-action-executer";
+    public static final String NAME = "conversionAction-executer";
     private ConversionDelegate delegate;
 
     public void setRegisterFileAction(RegisterFileActionExecuter registerFileAction) {

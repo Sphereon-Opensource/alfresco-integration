@@ -27,7 +27,7 @@ import java.util.List;
  * Created by niels on 29-6-2017.
  */
 public class ListEntriesActionExecuter extends AbstractBlockchainActionExecuter {
-    public static final String NAME = "blockchain-list-entries";
+    public static final String NAME = "blockchainListEntries";
 
 
 

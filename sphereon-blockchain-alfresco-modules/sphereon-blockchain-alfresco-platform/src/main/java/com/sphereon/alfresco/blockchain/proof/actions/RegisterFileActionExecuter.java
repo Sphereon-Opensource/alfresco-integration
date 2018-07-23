@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class RegisterFileActionExecuter extends AbstractBlockchainActionExecuter {
-    public static final String NAME = "blockchain-proof-register-file";
+    public static final String NAME = "blockchainProofRegisterFile";
     @Autowired
     private BlockchainRegistrationNodeUpdater nodeUpdater;
 

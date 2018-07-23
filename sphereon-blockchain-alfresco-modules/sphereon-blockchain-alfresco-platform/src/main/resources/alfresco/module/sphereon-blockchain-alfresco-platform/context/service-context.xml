@@ -30,6 +30,7 @@
         <property name="consumerSecret" value="${sphereon.blockchain.proof.api.auth.oauth2-consumer-secret}"/>
         <property name="authMethod" value="${sphereon.blockchain.proof.api.auth.method}"/>
         <property name="tempDir" value="${sphereon.blockchain.proof.temp-dir}"/>
+        <property name="encoding" value="${sphereon.blockchain.proof.encoding}"/>
         <property name="enabled" value="${sphereon.blockchain.proof.enabled}"/>
         <property name="configName" value="${sphereon.blockchain.proof.config-name}"/>
         <property name="targetChains"
@@ -42,36 +43,36 @@
           parent="abstractActionExecuter" abstract="true" scope="prototype">
     </bean>
 
-    <bean id="blockchain-proof-register-file"
+    <bean id="blockchainProofRegisterFile"
           class="com.sphereon.alfresco.blockchain.proof.actions.RegisterFileActionExecuter"
           parent="abstractBlockchainActionExecuter" scope="prototype">
     </bean>
 
-    <bean id="blockchain-proof-verify-file"
+    <bean id="blockchainProofVerifyFile"
           class="com.sphereon.alfresco.blockchain.proof.actions.VerifyFileActionExecuter"
           parent="abstractBlockchainActionExecuter" scope="prototype">
     </bean>
 
 
-    <bean id="blockchain-register-freeform"
+    <bean id="blockchainRegisterFreeform"
           class="com.sphereon.alfresco.blockchain.proof.actions.RegisterFreeformActionExecuter"
           parent="abstractBlockchainActionExecuter" scope="prototype">
     </bean>
 
-    <bean id="blockchain-list-entries"
+    <bean id="blockchainListEntries"
           class="com.sphereon.alfresco.blockchain.proof.actions.ListEntriesActionExecuter"
           parent="abstractBlockchainActionExecuter" scope="prototype">
     </bean>
 
 
-    <bean id="wf-blockchain-proof-register-file"
+    <bean id="wfBlockchainProofRegisterFile"
           class="com.sphereon.alfresco.blockchain.proof.workflow.SphereonBlockchainProofRegister"
-          parent="wf-action" scope="prototype">
+          parent="wfBaseAction" scope="prototype">
     </bean>
 
-    <bean id="wf-blockchain-proof-verify-file"
+    <bean id="wfBlockchainProofVerifyFile"
           class="com.sphereon.alfresco.blockchain.proof.workflow.SphereonBlockchainProofVerify"
-          parent="wf-action" scope="prototype">
+          parent="wfBaseAction" scope="prototype">
     </bean>
 
 </beans>

@@ -15,7 +15,8 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sphereon.alfresco</groupId>
     <artifactId>sphereon-alfresco-modules</artifactId>
@@ -72,9 +73,6 @@
     </properties>
 
 
-
-
-
     <scm>
         <connection>scm:git:git@github.com:Sphereon-Opensource/alfresco.git</connection>
         <developerConnection>scm:git:git@github.com:Sphereon-Opensource/alfresco.git</developerConnection>
@@ -109,7 +107,6 @@
             <url>http://nexus.qa.sphereon.com/repository/sphereon-opensource-releases/</url>
         </repository>
     </distributionManagement>
-
 
 
     <!-- Libs used in Unit and Integration tests -->
@@ -238,29 +235,10 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-
     <!--
-        Alfresco Maven Repositories
+        Sphereon Maven Repositories
         -->
     <repositories>
-        <repository>
-            <id>alfresco-public</id>
-            <url>https://artifacts.alfresco.com/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>alfresco-public-snapshots</id>
-            <url>https://artifacts.alfresco.com/nexus/content/groups/public-snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </snapshots>
-        </repository>
-        <!-- Alfresco Enterprise Edition Artifacts, put username/pwd for server in settings.xml -->
-        <repository>
-            <id>alfresco-private-repository</id>
-            <url>https://artifacts.alfresco.com/nexus/content/groups/private</url>
-        </repository>
         <repository>
             <id>sphereon-opensource-releases</id>
             <name>Sphereon Public Releases</name>
@@ -287,6 +265,29 @@
                 <updatePolicy>daily</updatePolicy>
             </snapshots>
         </repository>
+
+
+        <!--
+            Alfresco Maven Repositories
+            -->
+        <repository>
+            <id>alfresco-public</id>
+            <url>https://artifacts.alfresco.com/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>alfresco-public-snapshots</id>
+            <url>https://artifacts.alfresco.com/nexus/content/groups/public-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+        </repository>
+        <!-- Alfresco Enterprise Edition Artifacts, put username/pwd for server in settings.xml -->
+        <repository>
+            <id>alfresco-private-repository</id>
+            <url>https://artifacts.alfresco.com/nexus/content/groups/private</url>
+        </repository>
+
     </repositories>
 
     <pluginRepositories>
@@ -303,12 +304,40 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
-  <modules>
-    <module>sphereon-base-alfresco-modules</module>
-    <module>sphereon-blockchain-alfresco-modules</module>
-    <module>sphereon-conversion-alfresco-modules</module>
-      <!-- Vision is not implemented yet -->
-    <!--<module>sphereon-vision-alfresco-modules</module>-->
-  </modules>
+    <plugins>
+        <plugin>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>${maven-release-plugin.version}</version>
+            <configuration>
+                <autoVersionSubmodules>true</autoVersionSubmodules>
+                <!-- Keep changes in the local repo, push will be done afterwards -->
+                <pushChanges>false</pushChanges>
+                <localCheckout>true</localCheckout>
+                <!-- Use a better name for the tag -->
+                <tagNameFormat>v@{project.version}</tagNameFormat>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.maven.scm</groupId>
+                    <artifactId>maven-scm-provider-gitexe</artifactId>
+                    <version>${maven-scm-provider-gitexe.version}</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+        <plugin>
+            <groupId>com.amashchenko.maven.plugin</groupId>
+            <artifactId>gitflow-maven-plugin</artifactId>
+            <version>1.9.0</version>
+            <configuration>
+                <!-- optional configuration -->
+            </configuration>
+        </plugin>
+    </plugins>
+    <modules>
+        <module>sphereon-base-alfresco-modules</module>
+        <module>sphereon-blockchain-alfresco-modules</module>
+        <module>sphereon-conversion-alfresco-modules</module>
+        <!-- Vision is not implemented yet -->
+        <!--<module>sphereon-vision-alfresco-modules</module>-->
+    </modules>
 </project>

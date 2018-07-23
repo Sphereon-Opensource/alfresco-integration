@@ -21,7 +21,7 @@
         <endEvent id="endevent1" name="End"></endEvent>
         <userTask id="alfrescoUsertask1" name="Alfresco User Task" activiti:assignee="${initiator.properties.userName}" activiti:formKey="wf:activitiReviewTask">
             <extensionElements>
-                <activiti:taskListener event="create" delegateExpression="${SphereonWorkflowConversion}"></activiti:taskListener>
+                <activiti:taskListener event="create" delegateExpression="${wfConversion}"></activiti:taskListener>
                 <activiti:taskListener event="complete" class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
                     <activiti:field name="script">
                         <activiti:string>execution.setVariable('wf_reviewOutcome', task.getVariable('wf_reviewOutcome'));</activiti:string>

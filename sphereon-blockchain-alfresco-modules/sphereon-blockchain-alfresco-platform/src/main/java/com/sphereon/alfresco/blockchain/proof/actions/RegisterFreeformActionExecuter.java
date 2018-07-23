@@ -25,7 +25,7 @@ import org.alfresco.service.cmr.repository.NodeRef;
 import java.util.List;
 
 public class RegisterFreeformActionExecuter extends AbstractBlockchainActionExecuter {
-    public static final String NAME = "blockchain-register-freeform";
+    public static final String NAME = "blockchainRegisterFreeform";
 
 
     private Digest digest = Digest.getInstance();

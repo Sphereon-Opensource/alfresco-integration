@@ -9,7 +9,7 @@ The advanced search has been expanded to search for blockchain specific metadata
 Preliminary support for the workflow is there. This has not been fully tested yet, so may not fully work as intended.
 
 ```
-var blockchainRegistration = actions.create("blockchain-proof-register-file");
+var blockchainRegistration = actions.create("blockchainProofRegisterFile");
 for (var i = 0; i &lt; bpm_package.children.length; i++) {
     if (!bpm_package.children[i].hasAspect('spbcc:blockchainAspectBase')) {
         bpm_package.children[i].addAspect('spbcc:blockchainAspectBase');

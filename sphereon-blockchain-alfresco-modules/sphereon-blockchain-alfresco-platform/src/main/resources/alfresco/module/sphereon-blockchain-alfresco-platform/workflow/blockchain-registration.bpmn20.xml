@@ -29,7 +29,7 @@
             <extensionElements>
 
                 <activiti:taskListener event="create"
-                                       delegateExpression="${SphereonWorkflowConversion}"></activiti:taskListener>
+                                       delegateExpression="${wfConversion}"></activiti:taskListener>
                 <activiti:taskListener event="complete"
                                        class="org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener">
                     <activiti:field name="script">
@@ -39,7 +39,7 @@
                                 execution.setVariable('spbcw_approveCount', newApprovedCount);
                             }
 
-                            var blockchainRegistration = actions.create("blockchain-proof-register-file");
+                            var blockchainRegistration = actions.create("blockchainProofRegisterFile");
                             blockchainRegistration.parameters["spbcc:blockchain-file-remark"] = 'Approval outcome 1: '+
                                                                         task.getVariableLocal('spbcw_approveRejectOutcome') ;
                             blockchainRegistration.parameters["blockchain-file-remark"] = 'Approval outcome 2: '+
@@ -109,7 +109,7 @@
                                 execution.setVariable('spbcw_approveCount', newApprovedCount);
                             }
 
-                            var blockchainRegistration = actions.create("blockchain-proof-register-file");
+                            var blockchainRegistration = actions.create("blockchainProofRegisterFile");
                             blockchainRegistration.parameters["spbcc:blockchain-file-remark"] = 'Approval outcome: '+
                                                             task.getVariableLocal('spbcw_approveRejectOutcome') ;
                             blockchainRegistration.parameters["blockchain-file-remark"] = 'Approval outcome: '+

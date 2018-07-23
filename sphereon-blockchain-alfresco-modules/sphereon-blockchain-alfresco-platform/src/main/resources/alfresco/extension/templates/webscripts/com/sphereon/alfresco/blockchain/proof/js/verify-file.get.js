@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var verification = actions.create("blockchain-proof-verify-file");
+var verification = actions.create("blockchainProofVerifyFile");
 verification.execute(search.findNode(args["nodeRef"]));
 model.result = verification.parameters;
 model.fileName = args["fileName"];

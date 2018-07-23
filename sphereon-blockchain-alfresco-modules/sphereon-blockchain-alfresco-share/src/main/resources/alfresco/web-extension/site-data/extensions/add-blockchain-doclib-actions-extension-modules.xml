@@ -48,7 +48,7 @@
                     label="com.sphereon.alfresco.actions.blockchain.registerFileAction.label">
               <param name="function">onActionFormDialog</param>
               <param name="itemKind">action</param>
-              <param name="itemId">blockchain-proof-register-file</param> <!-- Repository action id = Spring Bean id -->
+              <param name="itemId">blockchainProofRegisterFile</param> <!-- Repository action id = Spring Bean id -->
               <param name="mode">create</param>
               <param name="destination">{node.nodeRef}</param>
               <param name="successMessage">com.sphereon.alfresco.actions.blockchain.registerFileAction.msg.success</param>
@@ -62,7 +62,7 @@
               <!--function is the name of the js function in the file under META-INF/respources/modules-->
               <param name="function">onActionBlockchainProofVerifyRegistration</param>
               <param name="itemKind">action</param>
-              <param name="itemId">blockchain-proof-verify-file</param> <!-- Repository action id = Spring Bean id -->
+              <param name="itemId">blockchainProofVerifyFile</param> <!-- Repository action id = Spring Bean id -->
               <param name="mode">create</param>
               <param name="destination">{node.nodeRef}</param>
               <param name="successMessage">com.sphereon.alfresco.actions.blockchain.verifyFileAction.msg.success</param>
@@ -87,7 +87,7 @@
 
 
         <config evaluator="string-compare"
-                condition="blockchain-proof-register-file"> <!-- ID for the Repository Action that this form is associated with -->
+                condition="blockchainProofRegisterFile"> <!-- ID for the Repository Action that this form is associated with -->
           <forms>
             <form>
               <field-visibility>
@@ -114,7 +114,7 @@
         </config>
 
         <config evaluator="string-compare"
-                condition="blockchain-proof-verify-file">
+                condition="blockchainProofVerifyFile">
 <!--          <dependencies>
             <js src="resources/add-action-doclib-share/components/documentlibrary/custom-doclib-actions.js" />
           </dependencies>-->

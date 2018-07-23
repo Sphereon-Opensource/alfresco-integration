@@ -42,7 +42,7 @@
         <property name="registerBlockchain" value="${content.transformer.sphereon.conversion2pdf.action-register-blockchain}"/>
     </bean>
 
-    <bean id="wf-conversion" class="com.sphereon.alfresco.pdf.workflow.SphereonWorkflowConversion" parent="wf-action" scope="prototype"/>
+    <bean id="wfConversion" class="com.sphereon.alfresco.pdf.workflow.SphereonWorkflowConversion" parent="wfBaseAction" scope="prototype"/>
 
 
     <bean id="conversion2PdfTransformer"
@@ -54,14 +54,14 @@
 
     </bean>
 
-    <bean id="conversion-action"
+    <bean id="conversionAction"
           class="com.sphereon.alfresco.pdf.actions.ConversionActionExecuter"
           parent="abstractActionExecuter" scope="prototype">
         <property name="delegate">
             <ref bean="conversionDelegate"/>
         </property>
         <property name="registerFileAction">
-            <ref bean="blockchain-proof-register-file"/>
+            <ref bean="blockchainProofRegisterFile"/>
         </property>
         <property name="mimetypeService">
             <ref bean="mimetypeService"/>

@@ -49,6 +49,6 @@
         <property name="enabled" value="${sphereon.default.enabled:true}"/>
     </bean>
 
-    <bean id="wf-action" class="com.sphereon.alfresco.base.workflow.SphereonWorkflowAction" parent="baseJavaDelegate"
+    <bean id="wfBaseAction" class="com.sphereon.alfresco.base.workflow.SphereonWorkflowAction" parent="baseJavaDelegate"
           depends-on="activitiBeanRegistry" scope="prototype"/>
 </beans>

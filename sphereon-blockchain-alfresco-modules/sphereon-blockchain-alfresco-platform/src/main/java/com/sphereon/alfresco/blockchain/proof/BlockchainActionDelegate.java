@@ -31,11 +31,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.xml.bind.DatatypeConverter;
+import java.util.Base64;
 import java.util.Optional;
 
 @Component
 @Scope("prototype")
 public class BlockchainActionDelegate {
+
+    private Base64.Encoder base64Enc = Base64.getEncoder();
 
     private static Log log = LogFactory.getLog(BlockchainActionDelegate.class);
     private RegistrationApi registrationApi = new RegistrationApi();
@@ -68,10 +72,11 @@ public class BlockchainActionDelegate {
     public VerifyContentResponse verifyContent(byte[] content, Optional<String> requestId) {
         registrationApi.getApiClient().setAccessToken(getAccessToken());
         String id = requestId.orElse("register-" + content.hashCode());
-        ContentRequest contentRequest = new ContentRequest().content(content).hashProvider(config.getHashProviderEnum()).requestId(id);
+        byte[] reqContent = getConfig().isHexEncoding() ? DatatypeConverter.printHexBinary(content).toLowerCase().getBytes() : base64Enc.encode(content);
+        ContentRequest contentRequest = new ContentRequest().content(reqContent).hashProvider(config.getHashProviderEnum());
         try {
-            log.info(String.format("Verify content for request '%s' using config %s...", id, getConfig().getConfigName()));
-            VerifyContentResponse verifyContentResponse = verificationApi.verifyUsingContent(getConfig().getConfigName(), contentRequest, null);
+            log.info(String.format("Verify content for request '%s' using config %s, for hash %s...", id, getConfig().getConfigName(), new String(reqContent)));
+            VerifyContentResponse verifyContentResponse = verificationApi.verifyUsingContent(getConfig().getConfigName(), contentRequest, id, null, null, null);
             log.info(String.format("Verified content for request '%s' using config %s. Registered: %s at %s with hash %s ", id, getConfig().getConfigName(), verifyContentResponse.getRegistrationState(), verifyContentResponse.getRegistrationTime(), verifyContentResponse.getHash()));
             return verifyContentResponse;
         } catch (ApiException e) {
@@ -83,10 +88,11 @@ public class BlockchainActionDelegate {
     public RegisterContentResponse registerContent(byte[] content, Optional<String> requestId) {
         registrationApi.getApiClient().setAccessToken(getAccessToken());
         String id = requestId.orElse("register-" + content.hashCode());
-        ContentRequest contentRequest = new ContentRequest().content(content).hashProvider(config.getHashProviderEnum()).requestId(id);
+        byte[] reqContent = getConfig().isHexEncoding() ? DatatypeConverter.printHexBinary(content).toLowerCase().getBytes() : base64Enc.encode(content);
+        ContentRequest contentRequest = new ContentRequest().content(reqContent).hashProvider(config.getHashProviderEnum());
         try {
-            log.info(String.format("Registering content for request '%s' using config %s...", id, getConfig().getConfigName()));
-            RegisterContentResponse registerContentResponse = registrationApi.registerUsingContent(getConfig().getConfigName(), contentRequest);
+            log.info(String.format("Registering content for request '%s' using config %s, for hash %s...", id, getConfig().getConfigName(), new String(reqContent)));
+            RegisterContentResponse registerContentResponse = registrationApi.registerUsingContent(getConfig().getConfigName(), contentRequest, id, null, null, null);
             log.info(String.format("Registered content for request '%s' using config %s. Hash: %s", id, getConfig().getConfigName(), registerContentResponse.getHash()));
             return registerContentResponse;
         } catch (ApiException e) {

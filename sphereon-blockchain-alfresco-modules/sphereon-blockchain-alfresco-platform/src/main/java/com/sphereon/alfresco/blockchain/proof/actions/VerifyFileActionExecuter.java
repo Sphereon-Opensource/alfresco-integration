@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class VerifyFileActionExecuter extends AbstractBlockchainActionExecuter {
-    public static final String NAME = "blockchain-proof-verify-file";
+    public static final String NAME = "blockchainProofVerifyFile";
 
     @Override
     protected void addParameterDefinitions(List<ParameterDefinition> paramList) {

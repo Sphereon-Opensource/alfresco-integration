@@ -18,6 +18,8 @@ package com.sphereon.alfresco.blockchain.proof;
 
 import com.sphereon.alfresco.base.auth.AbstractAuthConfig;
 import com.sphereon.sdk.blockchain.proof.model.ContentRequest;
+import org.alfresco.error.AlfrescoRuntimeException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -26,8 +28,8 @@ public class BlockchainProofConfig extends AbstractAuthConfig {
     private String tempDir = System.getProperty("java.io.tmpdir");
     private String configName;
     private String hashProvider;
+    private String encoding;
     private List<String> targetChains;
-
 
 
     public String getHashProvider() {
@@ -65,5 +67,24 @@ public class BlockchainProofConfig extends AbstractAuthConfig {
     public ContentRequest.HashProviderEnum getHashProviderEnum() {
         //// FIXME: 12-1-2018
         return ContentRequest.HashProviderEnum.CLIENT;
+    }
+
+    public boolean isHexEncoding() {
+        return StringUtils.isEmpty(encoding) || "hex".equalsIgnoreCase(encoding);
+    }
+
+    public boolean isBase64Encoding() {
+        return "base64".equalsIgnoreCase(encoding);
+    }
+
+    public String getEncoding() {
+        return encoding;
+    }
+
+    public void setEncoding(String encoding) {
+        if (!StringUtils.isEmpty(encoding) && !"hex".equalsIgnoreCase(encoding) && !"base64".equalsIgnoreCase(encoding)) {
+            throw new AlfrescoRuntimeException("Invalid encoding for blockcain-proof. Should be base64 or hex. Provided: " + encoding);
+        }
+        this.encoding = encoding;
     }
 }

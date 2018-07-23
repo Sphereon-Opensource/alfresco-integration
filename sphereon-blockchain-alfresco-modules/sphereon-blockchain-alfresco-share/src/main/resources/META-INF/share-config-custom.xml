@@ -36,7 +36,7 @@
 
     <config evaluator="string-compare" condition="DocLibCustom" replace="true">
         <dependencies>
-            <js src="/sphereon-blockchain-alfresco-share/js/blockchain-proof-verify-file-form.js" />
+            <js src="/sphereon-blockchain-alfresco-share/js/blockchainProofVerifyFile-form.js" />
         </dependencies>
     </config>
 
