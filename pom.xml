@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sphereon.alfresco</groupId>
     <artifactId>sphereon-alfresco-modules</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2-SNAPSHOT</version>
     <name>Sphereon - Alfresco modules</name>
     <description>Sphereon Alfresco Modules</description>
     <packaging>pom</packaging>
