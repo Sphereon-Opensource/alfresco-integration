@@ -73,7 +73,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <pdf-sdk.version>1.1.0-SNAPSHOT</pdf-sdk.version>
+        <pdf-sdk.version>1.1.1</pdf-sdk.version>
     </properties>
 
 
