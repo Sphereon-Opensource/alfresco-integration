@@ -32,7 +32,7 @@
     <properties>
         <!--<spring.version>4.3.7.RELEASE</spring.version>-->
         <!--<blockchain-proof-sdk.version>0.9.2-SNAPSHOT</blockchain-proof-sdk.version>-->
-        <pdf-sdk.version>1.1.0-SNAPSHOT</pdf-sdk.version>
+        <pdf-sdk.version>1.1.1</pdf-sdk.version>
      <!--   <easy-blockchain-lib.version>0.1.1-SNAPSHOT</easy-blockchain-lib.version>
         <authentication-lib.version>0.1.1-SNAPSHOT</authentication-lib.version>-->
     </properties>
