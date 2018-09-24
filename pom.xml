@@ -70,6 +70,9 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring.version>3.2.17.RELEASE</spring.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <maven-scm-provider-gitexe.version>1.11.1</maven-scm-provider-gitexe.version>
+        <gitflow-maven-plugin.version>1.9.0</gitflow-maven-plugin.version>
     </properties>
 
 
@@ -304,35 +307,37 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-    <plugins>
-        <plugin>
-            <artifactId>maven-release-plugin</artifactId>
-            <version>${maven-release-plugin.version}</version>
-            <configuration>
-                <autoVersionSubmodules>true</autoVersionSubmodules>
-                <!-- Keep changes in the local repo, push will be done afterwards -->
-                <pushChanges>false</pushChanges>
-                <localCheckout>true</localCheckout>
-                <!-- Use a better name for the tag -->
-                <tagNameFormat>v@{project.version}</tagNameFormat>
-            </configuration>
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.maven.scm</groupId>
-                    <artifactId>maven-scm-provider-gitexe</artifactId>
-                    <version>${maven-scm-provider-gitexe.version}</version>
-                </dependency>
-            </dependencies>
-        </plugin>
-        <plugin>
-            <groupId>com.amashchenko.maven.plugin</groupId>
-            <artifactId>gitflow-maven-plugin</artifactId>
-            <version>1.9.0</version>
-            <configuration>
-                <!-- optional configuration -->
-            </configuration>
-        </plugin>
-    </plugins>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <!-- Keep changes in the local repo, push will be done afterwards -->
+                    <pushChanges>false</pushChanges>
+                    <localCheckout>true</localCheckout>
+                    <!-- Use a better name for the tag -->
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>${maven-scm-provider-gitexe.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>${gitflow-maven-plugin.version}</version>
+                <configuration>
+                    <!-- optional configuration -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <modules>
         <module>sphereon-base-alfresco-modules</module>
         <module>sphereon-blockchain-alfresco-modules</module>
