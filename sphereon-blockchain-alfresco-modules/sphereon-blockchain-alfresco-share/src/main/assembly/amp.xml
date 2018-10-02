@@ -73,10 +73,12 @@
         <dependencySet>
             <outputDirectory>lib</outputDirectory>
             <excludes>
-                <exclude>com.sphereon.alfresco:sphereon-base-alfresco-platform</exclude>
-                <exclude>com.sphereon.alfresco:sphereon-base-alfresco-share</exclude>
                 <exclude>com.sphereon.sdk:blockchain-proof-sdk-java8-okhttp-gson</exclude>
                 <exclude>com.sphereon.public:easy-blockchain-lib-main</exclude>
+                <exclude>com.google.code.gson:gson:jar:</exclude>
+                <exclude>com.squareup.okhttp:okhttp:jar:</exclude>
+                <exclude>com.squareup.okhttp:logging-interceptor:jar:</exclude>
+                <exclude>com.squareup.okio:okio:jar:</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>

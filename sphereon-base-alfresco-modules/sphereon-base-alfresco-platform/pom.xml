@@ -30,11 +30,6 @@
     <packaging>jar</packaging>
 
 
-    <properties>
-        <authentication-lib.version>0.1.2</authentication-lib.version>
-        <okhttp2.version>2.7.5</okhttp2.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.sphereon.public</groupId>
@@ -81,17 +76,6 @@
             <version>${swagger-annotations.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId> com.squareup.okhttp</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>${okhttp2.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>okio</artifactId>
-                    <groupId>com.squareup.okio</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>

@@ -41,12 +41,6 @@
             <groupId>com.sphereon.sdk</groupId>
             <artifactId>vision-sdk-java8</artifactId>
             <version>${vision-sdk.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.squareup.okio</groupId>
-                    <artifactId>okio</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

@@ -71,6 +71,13 @@
     <dependencySets>
         <dependencySet>
             <outputDirectory>lib</outputDirectory>
+            <excludes>
+                <exclude>com.sphereon.sdk:vision-sdk-java8-okhttp-gson</exclude>
+                <exclude>com.google.code.gson:gson:jar:</exclude>
+                <exclude>com.squareup.okhttp:okhttp:jar:</exclude>
+                <exclude>com.squareup.okhttp:logging-interceptor:jar:</exclude>
+                <exclude>com.squareup.okio:okio:jar:</exclude>
+            </excludes>
         </dependencySet>
     </dependencySets>
 
