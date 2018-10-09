@@ -74,6 +74,7 @@
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
             <version>${swagger-annotations.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

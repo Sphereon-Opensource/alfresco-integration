@@ -46,6 +46,13 @@
         </dependency>
 
         <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger-annotations.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.alfresco.surf</groupId>
             <artifactId>spring-surf-api</artifactId>
         </dependency>
