@@ -101,16 +101,16 @@
     </developers>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>sphereon-opensource-snapshots</id>
-            <name>Sphereon Public Snapshots</name>
-            <url>http://nexus.qa.sphereon.com/repository/sphereon-opensource-snapshots/</url>
-        </snapshotRepository>
         <repository>
             <id>sphereon-opensource-releases</id>
             <name>Sphereon Public Releases</name>
             <url>http://nexus.qa.sphereon.com/repository/sphereon-opensource-releases/</url>
         </repository>
+        <snapshotRepository>
+            <id>sphereon-opensource-snapshots</id>
+            <name>Sphereon Public Snapshots</name>
+            <url>http://nexus.qa.sphereon.com/repository/sphereon-opensource-snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 
 
