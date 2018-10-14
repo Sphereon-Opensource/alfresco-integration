@@ -77,8 +77,10 @@
                 <exclude>com.sphereon.public:easy-blockchain-lib-main</exclude>
                 <exclude>com.google.code.gson:gson:jar:</exclude>
                 <exclude>com.squareup.okhttp:okhttp:jar:</exclude>
+                <exclude>com.squareup.okhttp3:okhttp:jar:</exclude>
                 <exclude>com.squareup.okhttp:logging-interceptor:jar:</exclude>
                 <exclude>com.squareup.okio:okio:jar:</exclude>
+                <exclude>com.sphereon.public:authentication-lib-main:jar:</exclude>
             </excludes>
         </dependencySet>
     </dependencySets>
